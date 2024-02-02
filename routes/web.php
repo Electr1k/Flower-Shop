@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return "jopa";
-});
-
-Route::get('/jopa', 'FlowersController@index');
+Route::get('/flowers', 'FlowerController@index')->name('flower.index');
+Route::get('/flowers/create', 'FlowerController@create')->name('flower.create');
+Route::post('/flowers', 'FlowerController@store')->name('flower.store');
+Route::get('/flowers/{flower}', 'FlowerController@show')->name('flower.show');
+Route::get('flowers/{flower}/edit', 'FlowerController@edit')->name('flower.edit');
+Route::patch('flowers/{flower}', 'FlowerController@update')->name('flower.update');
+Route::delete('flowers/{flower}', 'FlowerController@destroy')->name('flower.destroy');
