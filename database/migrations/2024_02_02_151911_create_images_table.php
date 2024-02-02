@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('flowers', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string("image", 100)->nullable();
-            $table->string('title', 100)->nullable(false);
-            $table->string('description', 500)->nullable();
+            $table->string('image', 100);
+            $table->unsignedBigInteger('flower_id')->nullable();
+            $table->index('flower_id', 'image_flower_idx');
             $table->timestamps();
-            $table->softDeletes();
+            $table->foreign('flower_id', 'image_flower_fk')->on('flowers')->references('id');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('flowers');
+        Schema::dropIfExists('images');
     }
 };

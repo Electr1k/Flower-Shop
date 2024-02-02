@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Flower;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class FlowerController extends Controller
@@ -20,7 +21,6 @@ class FlowerController extends Controller
         $data = request()->validate([
             'title' => 'string',
             'description' => 'string',
-            'image' => 'string|nullable',
         ]);
         Flower::create($data);
         return redirect()->route('flower.index');
@@ -37,7 +37,6 @@ class FlowerController extends Controller
         $data = request()->validate([
             'title' => 'string',
             'description' => 'string',
-            'image' => 'string|nullable',
         ]);
         $flower->update($data);
         return redirect()->route('flower.show', $flower->id);

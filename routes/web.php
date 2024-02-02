@@ -20,3 +20,5 @@ Route::get('/flowers/{flower}', 'FlowerController@show')->name('flower.show');
 Route::get('flowers/{flower}/edit', 'FlowerController@edit')->name('flower.edit');
 Route::patch('flowers/{flower}', 'FlowerController@update')->name('flower.update');
 Route::delete('flowers/{flower}', 'FlowerController@destroy')->name('flower.destroy');
+Route::post('flowers/{flower}/images/', 'ImageController@store')->name('image.store');
+Route::delete('flowers/{flower}/images/{image}', 'ImageController@destroy')->name('image.destroy');

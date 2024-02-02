@@ -11,10 +11,6 @@
                 <label for="description">Description</label>
                 <input type="text" class="form-control" name="description" id="description" aria-describedby="description">
             </div>
-            <div class="form-group">
-                <label for="image">Image</label>
-                <input type="text" class="form-control" name="image" id="image" aria-describedby="Image">
-            </div>
             <br>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

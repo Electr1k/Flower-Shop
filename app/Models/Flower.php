@@ -11,6 +11,11 @@ class Flower extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table = 'flower';
+    protected $table = 'flowers';
     protected $guarded = false;
+
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'flower_id', 'id');
+    }
 }
