@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Flower;
+use App\Models\FlowerTag;
 use App\Models\Image;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -12,13 +13,12 @@ class FlowerController extends Controller
 {
     public function index(){
         $flowers = Flower::orderBy('id', 'asc')->get();
-        $tag = Tag::find(1);
-        dd($tag->flowers);
         return view('flower.index', compact('flowers'));
     }
     public function create(){
         $categories = Category::all();
-        return view('flower.create', compact('categories'));
+        $tags = Tag::all();
+        return view('flower.create', compact('categories', 'tags'));
     }
 
     public function store()
@@ -26,9 +26,13 @@ class FlowerController extends Controller
         $data = request()->validate([
             'title' => 'string',
             'description' => 'string',
-            'category_id' => ''
+            'category_id' => '',
+            'tags' => ''
         ]);
-        Flower::create($data);
+        $tags = $data['tags'];
+        unset($data['tags']);
+        $flower = Flower::create($data);
+        $flower->tags()->attach($tags);
         return redirect()->route('flower.index');
     }
 
@@ -38,15 +42,20 @@ class FlowerController extends Controller
 
     public function edit(Flower $flower){
         $categories = Category::all();
-        return view('flower.edit', compact('flower', 'categories'));
+        $tags = Tag::all();
+        return view('flower.edit', compact('flower', 'categories', 'tags'));
     }
     public function update(Flower $flower){
         $data = request()->validate([
             'title' => 'string',
             'description' => 'string',
-            'category_id' => ''
+            'category_id' => '',
+            'tags' => '',
         ]);
+        $tags = $data['tags'];
+        unset($data['tags']);
         $flower->update($data);
+        $flower->tags()->sync($tags);
         return redirect()->route('flower.show', $flower->id);
     }
 

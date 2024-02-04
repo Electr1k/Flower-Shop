@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class FlowerTag extends Model
 {
     use HasFactory;
+    protected $table = 'flower_tags';
+    protected $guarded = false;
 }
