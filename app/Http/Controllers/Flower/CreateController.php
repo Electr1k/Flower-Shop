@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Flower;
 use App\Models\Tag;
 
-class CreateController extends Controller
+class CreateController extends BaseController
 {
    public function __invoke()
    {

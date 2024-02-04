@@ -6,15 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Flower\UpdateRequest;
 use App\Models\Flower;
 
-class UpdateController extends Controller
+class UpdateController extends BaseController
 {
    public function __invoke(UpdateRequest $request, Flower $flower)
    {
        $data = $request->validated();
-       $tags = $data['tags'];
-       unset($data['tags']);
-       $flower->update($data);
-       $flower->tags()->sync($tags);
+
+       $this->service->update($flower, $data);
+
        return redirect()->route('flower.show', $flower->id);
    }
 }

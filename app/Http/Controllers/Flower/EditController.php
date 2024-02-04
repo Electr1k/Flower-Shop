@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Flower;
 use App\Models\Tag;
 
-class EditController extends Controller
+class EditController extends BaseController
 {
    public function __invoke(Flower $flower)
    {
