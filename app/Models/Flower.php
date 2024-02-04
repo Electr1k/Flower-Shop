@@ -18,4 +18,12 @@ class Flower extends Model
     {
         return $this->hasMany(Image::class, 'flower_id', 'id');
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'flower_tags', 'flower_id', 'tag_id');
+    }
 }

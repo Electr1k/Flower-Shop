@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Flower;
 use App\Models\Image;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class FlowerController extends Controller
 {
     public function index(){
         $flowers = Flower::orderBy('id', 'asc')->get();
+        $tag = Tag::find(1);
+        dd($tag->flowers);
         return view('flower.index', compact('flowers'));
     }
     public function create(){
-        return view('flower.create');
+        $categories = Category::all();
+        return view('flower.create', compact('categories'));
     }
 
     public function store()
@@ -21,6 +26,7 @@ class FlowerController extends Controller
         $data = request()->validate([
             'title' => 'string',
             'description' => 'string',
+            'category_id' => ''
         ]);
         Flower::create($data);
         return redirect()->route('flower.index');
@@ -31,12 +37,14 @@ class FlowerController extends Controller
     }
 
     public function edit(Flower $flower){
-        return view('flower.edit', compact('flower'));
+        $categories = Category::all();
+        return view('flower.edit', compact('flower', 'categories'));
     }
     public function update(Flower $flower){
         $data = request()->validate([
             'title' => 'string',
             'description' => 'string',
+            'category_id' => ''
         ]);
         $flower->update($data);
         return redirect()->route('flower.show', $flower->id);
