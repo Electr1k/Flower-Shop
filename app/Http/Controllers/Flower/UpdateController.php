@@ -3,18 +3,14 @@
 namespace App\Http\Controllers\Flower;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Flower\UpdateRequest;
 use App\Models\Flower;
 
 class UpdateController extends Controller
 {
-   public function __invoke(Flower $flower)
+   public function __invoke(UpdateRequest $request, Flower $flower)
    {
-       $data = request()->validate([
-           'title' => 'string',
-           'description' => 'string',
-           'category_id' => '',
-           'tags' => '',
-       ]);
+       $data = $request->validated();
        $tags = $data['tags'];
        unset($data['tags']);
        $flower->update($data);
