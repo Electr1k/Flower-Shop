@@ -6,7 +6,7 @@
         @endforeach
 
         <div>
-            {{ $flowers->links() }}
+            {{ $flowers->withQueryString()->links() }}
         </div>
     </div>
 @endsection
