@@ -9,7 +9,7 @@ class IndexController extends BaseController
 {
    public function __invoke()
    {
-       $flowers = Flower::orderBy('id', 'asc')->get();
+       $flowers = Flower::orderBy('id', 'asc')->paginate(25);
        return view('flower.index', compact('flowers'));
    }
 }
