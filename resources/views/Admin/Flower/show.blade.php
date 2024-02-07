@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Цветы</h1>
+                    <h1 class="m-0">Цветок</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -24,30 +24,26 @@
 
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <a href="{{ route('flower.create') }}" class="btn btn-primary">Добавить</a>
+                        <div class="card-header d-flex p-3">
+                            <div class="mr-3">
+                                <a href="{{ route('flower.edit', $flower->id) }}" class="btn btn-primary">Изменить</a>
+                            </div>
+                            <form action="{{ route('flower.destroy', $flower->id) }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" class="btn btn-danger" value="Удалить">
+                            </form>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Наименование</th>
-                                    <th>Цена</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($flowers as $flower)
-                                    <tr>
-                                        <td>{{ $flower->id }}</td>
-                                        <td>
-                                            <a href="{{ route('flower.show', $flower->id) }}">{{ $flower->title }}</a></td>
-                                        <td>{{ $flower->price }}</td>
-                                    </tr>
+                            <H1>{{ $flower->title }}</H1>
+                            <div class="row">
+                                @foreach($flower->images as $img)
+                                    <img src="{{$img->image}}">
                                 @endforeach
-                                </tbody>
-                            </table>
+                            </div>
+                            <H2>{{ $flower->price }} рублей</H2>
+                            <H6>{{ $flower->description }}</H6>
                         </div>
                         <!-- /.card-body -->
                     </div>
