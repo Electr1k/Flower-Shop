@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Flower;
+namespace App\Http\Controllers\Web\Flower;
 
-use App\Http\Controllers\Controller;
 use App\Http\Filters\FlowerFilter;
 use App\Http\Requests\Flower\FilterRequest;
 use App\Models\Flower;
-use function Symfony\Component\String\s;
 
 class IndexController extends BaseController
 {

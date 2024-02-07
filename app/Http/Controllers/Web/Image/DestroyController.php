@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Image;
+namespace App\Http\Controllers\Web\Image;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Flower;
 use App\Models\Image;
-use App\Models\Tag;
 
 class DestroyController extends Controller
 {

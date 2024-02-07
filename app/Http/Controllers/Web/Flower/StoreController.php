@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Flower;
+namespace App\Http\Controllers\Web\Flower;
 
 use App\Http\Requests\Flower\StoreRequest;
 

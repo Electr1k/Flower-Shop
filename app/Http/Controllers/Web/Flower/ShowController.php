@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Flower;
+namespace App\Http\Controllers\Web\Flower;
 
-use App\Http\Controllers\Controller;
 use App\Models\Flower;
 
 class ShowController extends BaseController

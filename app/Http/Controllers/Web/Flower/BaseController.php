@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Image;
+namespace App\Http\Controllers\Web\Flower;
 use App\Http\Controllers\Controller;
-use App\Services\Image\Service;
+use App\Services\Flower\Service;
 
 class BaseController extends Controller
 {

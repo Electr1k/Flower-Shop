@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['namespace' => 'Flower'], function (){
+Route::group(['namespace' => 'Web\Flower'], function (){
     Route::get('/flowers', 'IndexController')->name('flower.index');
     Route::get('/flowers/create', 'CreateController')->name('flower.create');
     Route::post('/flowers', 'StoreController')->name('flower.store');
@@ -13,12 +13,12 @@ Route::group(['namespace' => 'Flower'], function (){
     Route::delete('flowers/{flower}', 'DestroyController')->name('flower.destroy');
 });
 
-Route::group(['namespace' => 'Image'], function () {
+Route::group(['namespace' => 'Web\Image'], function () {
     Route::post('flowers/{flower}/images/', 'StoreController')->name('image.store');
     Route::delete('flowers/{flower}/images/{image}', 'DestroyController')->name('image.destroy');
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
+Route::group(['namespace' => 'Web\Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::group(['namespace' => 'Flower'], function () {
 
         Route::get('/flowers', 'IndexController')->name('admin.flower.index');
@@ -27,4 +27,4 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');

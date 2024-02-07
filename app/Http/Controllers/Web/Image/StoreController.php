@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Image;
+namespace App\Http\Controllers\Web\Image;
 
 use App\Http\Requests\Image\StoreRequest;
 use App\Models\Flower;

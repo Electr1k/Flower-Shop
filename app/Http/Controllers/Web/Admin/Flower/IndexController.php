@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Flower;
+namespace App\Http\Controllers\Web\Admin\Flower;
 
 use App\Http\Controllers\Controller;
 use App\Http\Filters\FlowerFilter;

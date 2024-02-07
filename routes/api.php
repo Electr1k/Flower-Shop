@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group([
+    'namespace' => 'Api\Flower',
+    'middleware' => 'api',
+    'prefix' => 'flowers'], function ($router){
+   Route::get('/', 'IndexController');
+    Route::get('/{flower}', 'ShowController');
+});
