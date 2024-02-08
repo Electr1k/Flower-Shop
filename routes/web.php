@@ -38,8 +38,18 @@ Route::group(['namespace' => 'Web\Admin', 'prefix' => 'admin', ], function () {
         Route::get('/{category}/edit', 'EditController')->name('category.edit');
         Route::patch('/{category}', 'UpdateController')->name('category.update');
         Route::delete('/{category}', 'DestroyController')->name('category.destroy');
+    });
 
-    })
+    Route::group(['namespace' => 'Tag', 'prefix' => 'tags'], function () {
+        Route::get('/', "IndexController")->name('tag.index');
+        Route::get('/create', 'CreateController')->name('tag.create');
+        Route::post('/', 'StoreController')->name('tag.store');
+        Route::get('/{tag}', 'ShowController')->name('tag.show');
+        Route::get('/{tag}/edit', 'EditController')->name('tag.edit');
+        Route::patch('/{tag}', 'UpdateController')->name('tag.update');
+        Route::delete('/{tag}', 'DestroyController')->name('tag.destroy');
+
+    });
 });
 
 Auth::routes();
