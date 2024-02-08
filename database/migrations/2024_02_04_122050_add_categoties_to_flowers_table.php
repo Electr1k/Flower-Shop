@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('flowers', function (Blueprint $table) {
             $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id', 'flower_category_fk')->on('categories')->references('id');
+            $table->foreign('category_id', 'flower_category_fk')->on('categories')->references('id')->onDelete('cascade');
         });
     }
 
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('flowers', function (Blueprint $table) {
-            //
+            $table->dropColumn('category_id');
         });
     }
 };

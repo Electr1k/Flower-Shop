@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('tag_id');
             $table->index('flower_id', 'flower_tag_flower_idx');
             $table->index('tag_id', 'flower_tag_tag_idx');
-            $table->foreign('flower_id')->on('flowers')->references('id');
-            $table->foreign('tag_id')->on('tags')->references('id');
+            $table->foreign('flower_id')->on('flowers')->references('id')->onDelete('cascade');
+            $table->foreign('tag_id')->on('tags')->references('id')->onDelete('cascade');
             $table->timestamps();
         });
     }

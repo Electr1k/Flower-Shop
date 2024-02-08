@@ -18,7 +18,7 @@ Route::group(['namespace' => 'Web\Image'], function () {
     Route::delete('flowers/{flower}/images/{image}', 'DestroyController')->name('image.destroy');
 });
 
-Route::group(['namespace' => 'Web\Admin', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
+Route::group(['namespace' => 'Web\Admin', 'prefix' => 'admin', ], function () {
     Route::get('/', "Main\IndexController")->name('admin.index');
     Route::group(['namespace' => 'Flower', 'prefix' => 'flowers'], function () {
         Route::get('/', "IndexController")->name('flower.index');
@@ -30,6 +30,16 @@ Route::group(['namespace' => 'Web\Admin', 'prefix' => 'admin', 'middleware' => '
         Route::delete('/{flower}', 'DestroyController')->name('flower.destroy');
 
     });
+    Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
+        Route::get('/', "IndexController")->name('category.index');
+        Route::get('/create', 'CreateController')->name('category.create');
+        Route::post('/', 'StoreController')->name('category.store');
+        Route::get('/{category}', 'ShowController')->name('category.show');
+        Route::get('/{category}/edit', 'EditController')->name('category.edit');
+        Route::patch('/{category}', 'UpdateController')->name('category.update');
+        Route::delete('/{category}', 'DestroyController')->name('category.destroy');
+
+    })
 });
 
 Auth::routes();
