@@ -46,7 +46,8 @@ class Service
     {
         $tags = $data['tags'];
         unset($data['tags']);
-        $images = $data['images'];
+        $images = $data['images'] ?? [];
+
         unset($data['images']);
         try {
             DB::beginTransaction();

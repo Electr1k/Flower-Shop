@@ -22,6 +22,7 @@ Route::group([
     'namespace' => 'Api\Flower',
     'middleware' => 'api',
     'prefix' => 'flowers'], function ($router){
-   Route::get('/', 'IndexController');
+    Route::get('/filter', 'FilterListController');
+    Route::get('/', 'IndexController');
     Route::get('/{flower}', 'ShowController');
 });

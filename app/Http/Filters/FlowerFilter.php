@@ -11,6 +11,8 @@ class FlowerFilter extends AbstractFilter
     public const CATEGORY_ID = 'category_id';
 
     public const TAG_ID = 'tag_id';
+    public const PRICE_FROM = 'price_from';
+    public const PRICE_TO = 'price_to';
 
     protected function getCallbacks(): array
     {
@@ -19,6 +21,8 @@ class FlowerFilter extends AbstractFilter
             self::DESCRIPTION => [$this, 'description'],
             self::CATEGORY_ID => [$this, 'categoryId'],
             self::TAG_ID => [$this, 'tagId'],
+            self::PRICE_FROM => [$this, 'priceFrom'],
+            self::PRICE_TO => [$this, 'priceTo'],
         ];
     }
 
@@ -43,6 +47,14 @@ class FlowerFilter extends AbstractFilter
         $builder->whereHas('tags', function($q) use ($value) {
             $q->where('tag_id', $value);
         });
+    }
 
+    public function priceFrom(Builder $builder, $value)
+    {
+        $builder->where('price', '>=', $value);
+    }
+    public function priceTo(Builder $builder, $value)
+    {
+        $builder->where('price', '<=', $value);
     }
 }

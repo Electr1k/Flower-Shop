@@ -24,10 +24,12 @@ class FilterRequest extends FormRequest
         return [
             'title' => 'string',
             'description' => 'string',
-            'category_id' => '',
-            'tag_id' => '',
-            'page' => '',
-            'per_page'=> ''
+            'category_id' => 'integer',
+            'tag_id' => 'integer',
+            'page' => 'integer',
+            'per_page' => 'integer',
+            'price_from' => 'integer',
+            'price_to' => 'integer',
         ];
     }
 }

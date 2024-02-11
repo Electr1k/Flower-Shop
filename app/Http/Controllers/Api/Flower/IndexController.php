@@ -16,7 +16,7 @@ class IndexController extends BaseController
        $page = $data['page'] ?? 1;
        $perPage = $data['per_page'] ?? null;
        $filter = app()->make(FlowerFilter::class, ['queryParams' => array_filter($data)]);
-       $flowers = Flower::filter($filter);
+       $flowers = Flower::filter($filter)->orderBy('id', 'ASC');
        if ($perPage != null){
            $flowers = $flowers->paginate( $perPage,
                ['*'],
@@ -24,7 +24,7 @@ class IndexController extends BaseController
                $page
            );
        }
-       else $flowers = $flowers->get();
+       else $flowers = $flowers->orderBy('id', 'ASC')->get();
        return FlowerResource::collection($flowers);
    }
 }

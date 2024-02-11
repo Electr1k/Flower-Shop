@@ -10,7 +10,6 @@ class ShowController extends BaseController
 {
    public function __invoke(Flower $flower)
    {
-       $flower->getAttributes();
-       return $flower;
+       return new FlowerResource($flower);
    }
 }
