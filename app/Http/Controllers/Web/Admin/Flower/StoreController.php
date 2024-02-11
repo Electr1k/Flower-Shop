@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers\Web\Admin\Flower;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Flower\StoreRequest;
-use App\Models\Flower;
 
-class StoreController extends Controller
+class StoreController extends BaseController
 {
+
    public function __invoke(StoreRequest $request)
    {
        $data = $request->validated();
-
-       $flower = Flower::firstOrCreate($data);
+       $this->flowerService->store($data);
        return redirect()->route('flower.index');
    }
 }

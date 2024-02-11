@@ -61,6 +61,10 @@ Route::group(['namespace' => 'Web\Admin', 'prefix' => 'admin', ], function () {
         Route::delete('/{user}', 'DestroyController')->name('user.destroy');
 
     });
+
+    Route::group(['namespace' => 'Image', 'prefix' => 'image'], function () {
+        Route::delete('/{image}', "DestroyController")->name('image.destroy');
+    });
 });
 
 Auth::routes();

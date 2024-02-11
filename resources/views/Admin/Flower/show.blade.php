@@ -35,15 +35,24 @@
                             </form>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body table-responsive p-0">
-                            <H1>{{ $flower->title }}</H1>
+                        <div class="card-body table-responsive p-0 ml-3">
+                            <div class="row card-header  align-items-center">
+                                <h1>{{ $flower->title }}</h1>
+                                <span class="badge bg-success ml-1">{{ $flower->category->title }}</span>
+                            </div>
                             <div class="row">
                                 @foreach($flower->images as $img)
-                                    <img src="{{$img->image}}">
+                                    <img src="{{$img->image}}" style="width: 250px; height: 200px" class="mr-3">
                                 @endforeach
                             </div>
-                            <H2>{{ $flower->price }} рублей</H2>
-                            <H6>{{ $flower->description }}</H6>
+                                <H4>Цена: {{ $flower->price }} рублей</H4>
+                                <H4>Количество: {{ $flower->count }} штук</H4>
+                            <p>{{ $flower->description }}</p>
+                            <div class="row ml-1">
+                                @foreach($flower->tags as $tag)
+                                    <span class="badge bg-primary mr-2">{{ $tag->title }}</span>
+                                @endforeach
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>

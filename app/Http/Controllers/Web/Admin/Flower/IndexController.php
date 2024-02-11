@@ -10,10 +10,8 @@ class IndexController extends Controller
 {
    public function __invoke(FilterRequest $request)
    {
-       $data = $request->validated();
-        $flowers = Flower::all();
-//       $filter = app()->make(FlowerFilter::class, ['queryParams' => array_filter($data)]);
-//       $flowers = Flower::filter($filter)->paginate(25);
+        $data = $request->validated();
+        $flowers = Flower::orderBy('id','asc')->get();
        return view('admin.flower.index', compact('flowers'));
    }
 }
