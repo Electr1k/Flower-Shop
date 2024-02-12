@@ -38,7 +38,10 @@
                         <div class="card-body table-responsive p-0 ml-3">
                             <div class="row card-header  align-items-center">
                                 <h1>{{ $flower->title }}</h1>
-                                <span class="badge bg-success ml-1">{{ $flower->category->title }}</span>
+                                @if ($flower->category){
+                                    <span class="badge bg-success ml-1">{{ $flower->category->title }}</span>
+                                }
+                                @endif
                             </div>
                             <div class="row">
                                 @foreach($flower->images as $img)

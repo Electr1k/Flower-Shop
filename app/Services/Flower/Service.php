@@ -12,12 +12,11 @@ use Illuminate\Support\Facades\Storage;
 class Service
 {
 
-    public function store($data): void
+    public function store($data): Flower|null
     {
-        $tagsIds = $data['tags'];
-        $images = $data['images'];
-        unset($data['images']);
-        unset($data['tags']);
+        $tagsIds = $data['tags'] ?? [];
+        $images = $data['images'] ?? [];
+        unset($data['images'], $data['tags']);
         try {
             DB::beginTransaction();
             $flower = Flower::firstOrCreate([
@@ -37,18 +36,18 @@ class Service
                 ]);
             }
             Db::commit();
+            return $flower;
         } catch (\Exception $exception) {
             Db::rollBack();
         }
+        return null;
     }
 
-    public function update(Flower $flower, $data)
+    public function update(Flower $flower, $data): Flower
     {
-        $tags = $data['tags'];
-        unset($data['tags']);
+        $tags = $data['tags'] ?? [];
         $images = $data['images'] ?? [];
-
-        unset($data['images']);
+        unset($data['tags'], $data['images']);
         try {
             DB::beginTransaction();
             foreach ($images as $image) {
@@ -57,13 +56,14 @@ class Service
                 $img['flower_id'] = $flower->id;
                 Image::firstOrCreate($img);
             }
-
             $flower->update($data);
             $flower->tags()->sync($tags);
             DB::commit();
+            return $flower;
         }
         catch ( \Exception $e){
             DB::rollBack();
         }
+        return $flower;
     }
 }

@@ -23,6 +23,16 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'flowers'], function ($router){
     Route::get('/filter', 'FilterListController');
-    Route::get('/', 'IndexController');
+    Route::get('/all', 'IndexController');
     Route::get('/{flower}', 'ShowController');
+    Route::post('/', 'StoreController');
+    Route::patch('/{flower}', 'UpdateController');
+    Route::delete('/{flower}', 'DestroyController');
+});
+
+Route::group([
+    'namespace' => 'Api\User',
+    'middleware' => 'api',
+    'prefix' => 'users'], function ($router){
+    Route::get('/', 'IndexController');
 });

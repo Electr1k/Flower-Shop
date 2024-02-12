@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\Flower;
 
-use App\Http\Controllers\Web\Flower\BaseController;
 use App\Http\Filters\FlowerFilter;
 use App\Http\Requests\Flower\FilterRequest;
 use App\Http\Resources\Flower\FlowerResource;
