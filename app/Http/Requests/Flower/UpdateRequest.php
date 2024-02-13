@@ -22,10 +22,10 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:100|min:10',
-            'description' => 'required|string|max:500|min:10',
-            'price' => 'required|integer|min:1',
-            'count' => 'required|integer|min:0',
+            'title' => 'string|max:100|min:10',
+            'description' => 'string|max:500|min:10',
+            'price' => 'integer|min:1',
+            'count' => 'integer|min:0',
             'category_id' => 'nullable|integer',
             'tags' => 'nullable|array',
             'images' => 'nullable|array',
