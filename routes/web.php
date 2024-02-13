@@ -67,6 +67,6 @@ Route::group(['namespace' => 'Web\Admin', 'prefix' => 'admin', ], function () {
     });
 });
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');
+//Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');

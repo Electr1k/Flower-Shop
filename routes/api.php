@@ -25,14 +25,25 @@ Route::group([
     Route::get('/filter', 'FilterListController');
     Route::get('/all', 'IndexController');
     Route::get('/{flower}', 'ShowController');
-    Route::post('/', 'StoreController');
-    Route::patch('/{flower}', 'UpdateController');
-    Route::delete('/{flower}', 'DestroyController');
+    Route::group([
+        'middleware' => ['auth:sanctum', 'admin']
+    ], function () {
+        Route::post('/', 'StoreController');
+        Route::patch('/{flower}', 'UpdateController');
+        Route::delete('/{flower}', 'DestroyController');
+    });
 });
 
 Route::group([
     'namespace' => 'Api\User',
     'middleware' => 'api',
     'prefix' => 'users'], function ($router){
-    Route::get('/', 'IndexController');
+
+    Route::group(['middleware' => ['auth:sanctum']], function (){
+        Route::get('/', 'IndexController')->middleware('admin');
+        Route::patch('/{user}', 'UpdateController');
+    });
+    Route::post('/', 'StoreController');
+    Route::post('/login', 'LoginController');
+    Route::get('/checkEmail', 'CheckEmailController');
 });

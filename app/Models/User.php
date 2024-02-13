@@ -17,7 +17,7 @@ class User extends Authenticatable
     protected $guarded = false;
     static function getGenders()
     {
-        return [ self::GENDER_MALE => "Мужской", self::GENDER_FEMALE => "Женский"];
+        return [self::GENDER_MALE => "Мужской", self::GENDER_FEMALE => "Женский"];
     }
     public function getGenderTitleAttribyte()
     {
