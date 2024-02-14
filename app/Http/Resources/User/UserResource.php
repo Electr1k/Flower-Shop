@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\User;
 
+use App\Http\Resources\Basket\BasketResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -23,6 +24,7 @@ class UserResource extends JsonResource
             'address' => $this->address,
             'gender' => $this->gender,
             'isAdmin' => $this->isAdmin,
+            'basket' => new BasketResource($this->basket)
         ];
     }
 }

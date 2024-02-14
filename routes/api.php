@@ -41,6 +41,10 @@ Route::group([
 
     Route::group(['middleware' => ['auth:sanctum']], function (){
         Route::get('/', 'IndexController')->middleware('admin');
+        Route::get('/{user}', 'ShowController')->middleware('admin');
+
+        Route::post('/{user}/addProduct', 'Basket\AddProductController');
+
         Route::patch('/{user}', 'UpdateController');
     });
     Route::post('/', 'StoreController');
