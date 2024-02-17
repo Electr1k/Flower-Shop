@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Web\Flower\BaseController;
-use App\Http\Filters\FlowerFilter;
 use App\Http\Requests\Flower\FilterRequest;
-use App\Http\Resources\Flower\FlowerResource;
-use App\Http\Resources\User\BasketResource;
-use App\Models\Flower;
+use App\Http\Resources\User\UserResource;
 use App\Models\User;
 
 class IndexController extends BaseController
@@ -28,6 +25,6 @@ class IndexController extends BaseController
 //       }
 //       else $flowers = $flowers->orderBy('id', 'ASC')->get();
        $users = User::all();
-       return BasketResource::collection($users);
+       return UserResource::collection($users);
    }
 }

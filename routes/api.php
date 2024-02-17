@@ -44,6 +44,7 @@ Route::group([
         Route::get('/{user}', 'ShowController')->middleware('admin');
 
         Route::post('/{user}/addProduct', 'Basket\AddProductController');
+        Route::post('/{user}/removeProduct', 'Basket\RemoveProductController');
 
         Route::patch('/{user}', 'UpdateController');
     });

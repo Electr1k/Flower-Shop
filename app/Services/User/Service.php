@@ -63,14 +63,22 @@ class Service
             DB::beginTransaction();
             $data['basket_id'] = $user->basket_id;
             $product = Product::create($data);
-
             Db::commit();
+            $user->refresh();
             return $user;
         } catch (\Exception $exception) {
             Db::rollBack();
-            dd($exception);
         }
-
         return $user;
+    }
+
+    public function removeProduct(Product $product): bool    {
+        try {
+            $product->delete();
+            return true;
+        }
+        catch (\Exception $e){
+            return false;
+        }
     }
 }
