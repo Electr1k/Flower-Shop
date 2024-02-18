@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class DestroyRequest extends FormRequest
 {
@@ -22,7 +23,9 @@ class DestroyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_id' => 'required|integer',
+            'id' => ['required', 'integer', 'exists:products,id', Rule::exists('products')->where(function ($query) {
+                return $query->where('basket_id', $this->user->basket_id);
+            })],
         ];
     }
 }

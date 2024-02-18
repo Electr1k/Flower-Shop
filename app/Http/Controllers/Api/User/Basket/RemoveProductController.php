@@ -12,7 +12,8 @@ class RemoveProductController extends BaseController
 {
    public function __invoke(User $user, DestroyRequest $request)
    {
-       $product = Product::find($request->validated()['product_id']);
+       $product = Product::find($request->validated()['id']);
+
        return $this->service->removeProduct($product);
    }
 }

@@ -15,9 +15,12 @@ class BasketResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $products =  ProductResource::collection($this->products);
         return [
-            'id' => $this->id,
-            'products' => ProductResource::collection($this->products)
+            'products' => $products,
+            'total_price' => $products->sum(function($p){
+                return $p->flower->price * $p->count;
+            })
         ];
     }
 }
