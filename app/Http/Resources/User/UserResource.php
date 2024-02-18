@@ -24,7 +24,8 @@ class UserResource extends JsonResource
             'address' => $this->address,
             'gender' => $this->gender,
             'isAdmin' => $this->isAdmin,
-            'basket' => new BasketResource($this->basket)
+            'basket' => new BasketResource($this->basket),
+            'balance' => $this->balance
         ];
     }
 }

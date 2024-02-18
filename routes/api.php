@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::group([
     'namespace' => 'Api\Flower',
@@ -42,13 +39,26 @@ Route::group([
     Route::group(['middleware' => ['auth:sanctum']], function (){
         Route::get('/', 'IndexController')->middleware('admin');
         Route::get('/{user}', 'ShowController')->middleware('admin');
+        Route::patch('/{user}', 'UpdateController');
 
         Route::post('/{user}/addProduct', 'Basket\AddProductController');
         Route::post('/{user}/removeProduct', 'Basket\RemoveProductController');
 
-        Route::patch('/{user}', 'UpdateController');
+
+
+
     });
     Route::post('/', 'StoreController');
     Route::post('/login', 'LoginController');
     Route::get('/checkEmail', 'CheckEmailController');
+});
+
+Route::group([
+    'namespace' => 'Api\Order',
+    'middleware' => ['auth:sanctum','api'],
+    'prefix' => 'orders'], function ($router){
+    Route::post('/', 'StoreController')->middleware('admin');
+    Route::get('/', 'IndexController')->middleware('admin');
+    Route::post('/{order}/updateStatus', 'UpdateController')->middleware('admin');
+
 });
