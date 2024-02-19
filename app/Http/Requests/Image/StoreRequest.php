@@ -22,7 +22,7 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'required|string',
+            'image' => 'required|image',
         ];
     }
 }

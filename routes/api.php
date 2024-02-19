@@ -35,6 +35,7 @@ Route::group([
     'namespace' => 'Api\User',
     'middleware' => 'api',
     'prefix' => 'users'], function ($router){
+    Route::get('/checkEmail', 'CheckEmailController');
 
     Route::group(['middleware' => ['auth:sanctum']], function (){
         Route::get('/', 'IndexController')->middleware('admin');
@@ -44,13 +45,9 @@ Route::group([
         Route::post('/{user}/addProduct', 'Basket\AddProductController');
         Route::post('/{user}/removeProduct', 'Basket\RemoveProductController');
 
-
-
-
     });
     Route::post('/', 'StoreController');
     Route::post('/login', 'LoginController');
-    Route::get('/checkEmail', 'CheckEmailController');
 });
 
 Route::group([

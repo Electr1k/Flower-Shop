@@ -10,6 +10,8 @@ use App\Models\User;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class Service
 {
@@ -40,14 +42,14 @@ class Service
     public function login($data): string
     {
 
-        if (! Auth::guard('web')->attempt(['email' => $data['email'], 'password' => $data['password']])){
-            return response()->json(['message' => 'Неверный логин или пароль'], 401);
+        $user = User::where('email', $data['email'])->first();
+
+        if (!$user || !Hash::check($data['password'], $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
         }
-
-        $user = Auth::guard('web')->user();
-
-        $token = $user->createToken('login');
-        return $token->plainTextToken;
+        return $user->createToken('login')->plainTextToken;
     }
 
     public function update(User $user, $data): User

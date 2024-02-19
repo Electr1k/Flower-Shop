@@ -9,7 +9,7 @@ class CheckEmailController extends BaseController
 {
    public function __invoke(Request $request)
    {
-        $email = $request->input('email');
-        return response()->json($this->service->checkEmail($email));
+        $data = $request->validate(['email' => 'required|email']);
+        return response()->json($this->service->checkEmail($data['email']));
    }
 }
