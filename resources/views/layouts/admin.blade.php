@@ -126,7 +126,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="admin" class="brand-link">
+        <a href="{{route('admin.index')}}" class="brand-link">
             <span class="brand-text font-weight-light">Магазин цветов</span>
         </a>
 
