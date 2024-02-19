@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->jsonb('products')->nullable(false);;
-            $table->string('status')->nullable(false)->default(\App\Enums\OrderStatus::Accepted);
+            $table->string('status')->nullable(false)->default(\App\Enums\OrderStatus::Accepted->name);
             $table->unsignedBigInteger('user_id')->nullable(false);
             $table->foreign('user_id', 'user_fk')->on('users')->references('id')->onDelete('cascade');
             $table->unsignedBigInteger('total_price')->nullable(false)->default(0);

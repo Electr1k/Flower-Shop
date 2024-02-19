@@ -65,6 +65,12 @@ Route::group(['namespace' => 'Web\Admin', 'prefix' => 'admin', ], function () {
     Route::group(['namespace' => 'Image', 'prefix' => 'image'], function () {
         Route::delete('/{image}', "DestroyController")->name('image.destroy');
     });
+
+    Route::group(['namespace' => 'Order', 'prefix' => 'orders'], function () {
+        Route::get('/', "IndexController")->name('order.index');
+        Route::get('/{order}', "ShowController")->name('order.show');
+        Route::patch('/{order}', "UpdateController")->name('order.update');
+    });
 });
 
 //Auth::routes();

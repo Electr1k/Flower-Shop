@@ -142,7 +142,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                     <li class="nav-item">
-                        <a href="pages/gallery.html" class="nav-link">
+                        <a href="{{ route('order.index') }}" class="nav-link">
                             <i class="nav-icon fa fa-shopping-bag"></i>
                             <p>
                                 Заказы
@@ -200,7 +200,7 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+        <strong>Copyright &copy; 2014-2021 <a href="https://localhost:8000">Flowers shop</a>.</strong>
         All rights reserved.
         <div class="float-right d-none d-sm-inline-block">
             <b>Version</b> 3.2.0

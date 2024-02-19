@@ -4,11 +4,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Пользователи</h1>
+                    <h1 class="m-0">Заказы</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">Пользователи</li>
+                        <li class="breadcrumb-item active">Заказы</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -24,35 +24,30 @@
 
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <a href="{{ route('user.create') }}" class="btn btn-primary">Добавить</a>
-                        </div>
+
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Статус</th>
                                     <th>Имя</th>
                                     <th>Фамилия</th>
                                     <th>Email</th>
-                                    <th>Баланс</th>
-                                    <th>Возраст</th>
-                                    <th>Пол</th>
+                                    <th>Цена</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($users as $user)
+                                @foreach($orders as $order)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $order->id }}</td>
                                         <td>
-                                            <a href="{{ route('user.show', $user->id) }}">{{ $user->name }}</a></td>
-                                        <td>{{ $user->surname }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->balance }}</td>
-                                        <td>{{ $user->age }}</td>
-                                        <td>{{ $user->gender }}</td>
-
+                                            <a href="{{ route('order.show', $order->id) }}">{{ $order->status }}</a></td>
+                                        <td>{{ $order->user->name }}</td>
+                                        <td>{{ $order->user->surname }}</td>
+                                        <td>{{ $order->user->email }}</td>
+                                        <td>{{ $order->total_price }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
