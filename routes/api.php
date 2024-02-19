@@ -39,11 +39,11 @@ Route::group([
 
     Route::group(['middleware' => ['auth:sanctum']], function (){
         Route::get('/', 'IndexController')->middleware('admin');
-        Route::get('/{user}', 'ShowController')->middleware('admin');
-        Route::patch('/{user}', 'UpdateController');
+        Route::get('/{user}', 'ShowController')->middleware('user');
+        Route::patch('/{user}', 'UpdateController')->middleware('user');
 
-        Route::post('/{user}/addProduct', 'Basket\AddProductController');
-        Route::post('/{user}/removeProduct', 'Basket\RemoveProductController');
+        Route::post('/{user}/addProduct', 'Basket\AddProductController')->middleware('user');
+        Route::post('/{user}/removeProduct', 'Basket\RemoveProductController')->middleware('user');
 
     });
     Route::post('/', 'StoreController');
@@ -54,8 +54,8 @@ Route::group([
     'namespace' => 'Api\Order',
     'middleware' => ['auth:sanctum','api'],
     'prefix' => 'orders'], function ($router){
-    Route::post('/', 'StoreController')->middleware('admin');
+    Route::post('/', 'StoreController');
     Route::get('/', 'IndexController')->middleware('admin');
     Route::post('/{order}/updateStatus', 'UpdateController')->middleware('admin');
-
+    Route::get('/{order}', 'ShowController')->middleware('order');
 });

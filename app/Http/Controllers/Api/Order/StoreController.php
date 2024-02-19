@@ -8,7 +8,7 @@ use App\Http\Resources\Product\ProductResource;
 use App\Models\Product;
 use App\Models\User;
 
-class StoreController extends BaseController
+class   StoreController extends BaseController
 {
    public function __invoke()
    {

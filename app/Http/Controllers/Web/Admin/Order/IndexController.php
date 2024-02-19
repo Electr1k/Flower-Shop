@@ -8,7 +8,7 @@ class IndexController extends BaseController
 {
    public function __invoke()
    {
-       $orders = Order::orderBy('id', 'ASC')->get();
+       $orders = Order::orderBy('id', 'DESC')->get();
 
        return view('admin.order.index', compact('orders'));
    }

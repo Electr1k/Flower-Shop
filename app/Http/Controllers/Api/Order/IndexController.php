@@ -11,7 +11,7 @@ class IndexController extends BaseController
    public function __invoke()
    {
 
-       $order = Order::orderBy('id', 'ASC')->get();
+       $order = Order::orderBy('id', 'DESC')->get();
 
        return OrderResource::collection($order);
    }
