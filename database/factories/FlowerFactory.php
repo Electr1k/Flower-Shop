@@ -18,6 +18,9 @@ class FlowerFactory extends Factory
      */
     public function definition(): array
     {
+        if (!Category::count()){
+            Category::factory(10)->create();
+        }
         return [
             'title' => $this->faker->sentence,
             'description' => $this->faker->text,
