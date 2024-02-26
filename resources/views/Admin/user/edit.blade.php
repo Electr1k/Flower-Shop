@@ -65,6 +65,15 @@
                         <p class="text-danger">{{$message }}</p>
                         @enderror
                     </div>
+                    <label>Баланс</label>
+                    <div class="form-group">
+                        <label>
+                            <input type="number" value="{{$user->balance}}" name="balance" class="form-control" placeholder="Баланс">
+                        </label>
+                        @error('balance')
+                        <p class="text-danger">{{$message }}</p>
+                        @enderror
+                    </div>
                     <label>Адрес</label>
 
                     <div class="form-group ">

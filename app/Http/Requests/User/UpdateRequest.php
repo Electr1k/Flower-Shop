@@ -26,7 +26,9 @@ class UpdateRequest extends FormRequest
             'surname' => 'string|min:2|max:255',
             'age' => 'nullable|integer|min:1|max:150',
             'address' => 'nullable|string|min:5|max:255',
-            'gender' => 'nullable|integer|max:1|min:0'
+            'gender' => 'nullable|integer|max:1|min:0',
+            'balance' => 'integer|min:0',
+            'isAdmin' => 'boolean',
         ];
     }
 }

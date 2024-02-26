@@ -14,11 +14,8 @@ class UpdateController extends BaseController
    {
        $data = $request->validated();
        $userFromToken = auth()->user();
-       $userFromToken->refresh(); // Обновить данные пользователя
-       if($userFromToken->id != $user->id){
-           return response()->json([
-               'message' => 'Forbidden. You can\'t update other users'
-           ], 403);
+       if (!$userFromToken->isAdmin){
+           unset($data['isAdmin'], $data['balance']);
        }
        $user = $this->service->update($user, $data);
        return $user;

@@ -60,7 +60,11 @@
                                     </tr>
                                     <tr>
                                         <td>Пол</td>
-                                        <td>{{ $user->getGenderTitleAttribyte() }}</td>
+                                        <td>{{ isset($user->gender) ? $user->getGenderTitleAttribyte() : ""}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Баланс</td>
+                                        <td>{{ $user->balance }}</td>
                                     </tr>
                                     <tr>
                                         <td>Админ</td>

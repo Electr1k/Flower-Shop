@@ -51,7 +51,7 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->balance }}</td>
                                         <td>{{ $user->age }}</td>
-                                        <td>{{ $user->gender }}</td>
+                                        <td>{{ isset($user->gender) ? $user->getGenderTitleAttribyte() : "" }}</td>
 
                                     </tr>
                                 @endforeach
