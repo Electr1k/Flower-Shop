@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Order;
 
+use App\Events\StoreOrderEvent;
 use App\Http\Requests\Order\StoreRequest;
 use App\Http\Resources\Order\OrderResource;
 use App\Http\Resources\Product\ProductResource;
@@ -25,6 +26,7 @@ class   StoreController extends BaseController
            }
        }
        $order = $this->service->store($user);
+       broadcast(new StoreOrderEvent($order))->toOthers();
        return new OrderResource($order);
    }
 }

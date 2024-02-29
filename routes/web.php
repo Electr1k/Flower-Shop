@@ -18,7 +18,7 @@ Route::group(['namespace' => 'Web\Image'], function () {
     Route::delete('flowers/{flower}/images/{image}', 'DestroyController')->name('image.destroy');
 });
 
-Route::group(['namespace' => 'Web\Admin', 'prefix' => 'admin', ], function () {
+Route::group(['namespace' => 'Web\Admin', 'prefix' => 'admin', 'middleware' => 'adminPanel'], function () {
     Route::get('/', "Main\IndexController")->name('admin.index');
     Route::group(['namespace' => 'Flower', 'prefix' => 'flowers'], function () {
         Route::get('/', "IndexController")->name('flower.index');
@@ -73,6 +73,6 @@ Route::group(['namespace' => 'Web\Admin', 'prefix' => 'admin', ], function () {
     });
 });
 
-//Auth::routes();
+Auth::routes();
 
-//Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');
+Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');
