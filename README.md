@@ -11,7 +11,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Учебный проект серверная часть для магазин цветов.
+## Учебный проект серверная часть для магазина цветов.
 Учебный проект на PHP 8.1 с фреймворком Laravel 10.4. Так же в проекте были использованы следкющие технологии:
 <ul>
     <li>Аутентификация Sanctum</li>
