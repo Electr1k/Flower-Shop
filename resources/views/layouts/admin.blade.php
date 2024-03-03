@@ -19,11 +19,11 @@
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
     <script>
         Pusher.logToConsole = false;
-        var pusher = new Pusher('caa2a65ec56d8987e905', {
+        const pusher = new Pusher('caa2a65ec56d8987e905', {
             cluster: 'eu',
             channelAuthorization: { endpoint: "/broadcasting/auth"}
         });
-        var channel = pusher.subscribe('private-store_order');
+        const channel = pusher.subscribe('private-store_order');
         channel.bind('store_order', (data) => {
             const order = data.data;
             console.log(order);

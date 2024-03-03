@@ -26,10 +26,11 @@ class StoreRequest extends FormRequest
             'description' => 'required|string|max:500|min:10',
             'price' => 'required|integer|min:1',
             'count' => 'required|integer|min:0',
-            'category_id' => 'nullable|integer',
+            'category_id' => 'nullable|integer|exists:categories,id',
             'tags' => 'nullable|array',
+            'tags.*' => 'integer|exists:tags,id',
             'images' => 'nullable|array',
-            'is_publish' => 'nullable|boolean',
+            'is_published' => 'nullable|boolean',
             'images.*' => 'image'
         ];
     }

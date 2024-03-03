@@ -39,6 +39,7 @@ class Service
             return $flower;
         } catch (\Exception $exception) {
             Db::rollBack();
+            dd($exception);
         }
         return null;
     }
