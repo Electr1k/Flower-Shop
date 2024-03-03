@@ -34,7 +34,7 @@ class StoreOrderEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('store_order'),
+            new PrivateChannel('store_order'),
         ];
     }
 
