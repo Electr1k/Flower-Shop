@@ -38,6 +38,7 @@
     <li>Изменение статуса заказа администратором</li>
 </ul>
 Url админ панели: {baseURL}/admin <br>
+Документация swagger: {baseURL}/api/documentation <br>
 <a href="https://app.getpostman.com/join-team?invite_code=992cb323c9cc56aa8281c25c05982dc2&target_code=3bfb829a11d1a0b43dc7b823660b0b77">Endpoints on postman</a>
 
 ## Get started
