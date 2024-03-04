@@ -11,8 +11,8 @@
                 "tags": [
                     "Flower"
                 ],
-                "summary": "Список",
-                "operationId": "cee7334ee76dbfc10275c021d3f0de9a",
+                "summary": "Все цветы",
+                "operationId": "97e73b89802d2ef0345d373d891d54eb",
                 "responses": {
                     "200": {
                         "description": "Ok",
@@ -102,13 +102,153 @@
                 }
             }
         },
-        "/api/flowers/": {
-            "post": {
+        "/api/flowers/{flower}": {
+            "get": {
                 "tags": [
                     "Flower"
                 ],
-                "summary": "Создать",
-                "operationId": "3f72d5e0587062f34ba93f928ba6ac81",
+                "summary": "Цветок по ID",
+                "operationId": "c9103ec6b19fb2135ce29e778cdeafde",
+                "parameters": [
+                    {
+                        "name": "flower",
+                        "in": "path",
+                        "description": "ID цветка",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "title": {
+                                                    "type": "string",
+                                                    "example": "Title"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "Description"
+                                                },
+                                                "count": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "price": {
+                                                    "type": "integer",
+                                                    "example": 199
+                                                },
+                                                "category": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "title": {
+                                                            "type": "string",
+                                                            "example": "Title category"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "tags": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "title": {
+                                                                "type": "string",
+                                                                "example": "Title tags"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "images": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "title": {
+                                                                "type": "string",
+                                                                "example": "Title image"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Flower"
+                ],
+                "summary": "Удалить",
+                "operationId": "7f6038c2e1cba65be59651c2a4846ab2",
+                "parameters": [
+                    {
+                        "name": "flower",
+                        "in": "path",
+                        "description": "ID цветка",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Flower"
+                ],
+                "summary": "Обновить",
+                "operationId": "316670d4fe2a4f7fadad707e8376b447",
+                "parameters": [
+                    {
+                        "name": "flower",
+                        "in": "path",
+                        "description": "ID цветка",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -118,7 +258,7 @@
                                         "properties": {
                                             "title": {
                                                 "type": "string",
-                                                "example": "Title"
+                                                "example": "Title is update"
                                             },
                                             "description": {
                                                 "type": "string",
@@ -130,11 +270,11 @@
                                             },
                                             "price": {
                                                 "type": "integer",
-                                                "example": 199
+                                                "example": 10
                                             },
                                             "category_id": {
                                                 "type": "integer",
-                                                "example": 199
+                                                "example": 8
                                             },
                                             "tags": {
                                                 "type": "array",
@@ -172,13 +312,13 @@
                 ]
             }
         },
-        "/api/flowers/{flower}": {
-            "patch": {
+        "/api/flowers/": {
+            "post": {
                 "tags": [
                     "Flower"
                 ],
-                "summary": "Обновить",
-                "operationId": "d8ee50c1efd5e0e85e90d0528433e6a2",
+                "summary": "Создать",
+                "operationId": "5ed746d086a165f36792624abf5783a6",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -186,13 +326,9 @@
                                 "allOf": [
                                     {
                                         "properties": {
-                                            "id": {
-                                                "type": "integer",
-                                                "example": 1
-                                            },
                                             "title": {
                                                 "type": "string",
-                                                "example": "Title"
+                                                "example": "Title is create"
                                             },
                                             "description": {
                                                 "type": "string",
@@ -208,7 +344,7 @@
                                             },
                                             "category_id": {
                                                 "type": "integer",
-                                                "example": 199
+                                                "example": 3
                                             },
                                             "tags": {
                                                 "type": "array",
@@ -231,7 +367,411 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Ok"
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Все пользователи",
+                "operationId": "2de50d9685640f415a9c02001843b92c",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Misha"
+                                                    },
+                                                    "surname": {
+                                                        "type": "string",
+                                                        "example": "Surname"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "email@mail.ru"
+                                                    },
+                                                    "age": {
+                                                        "type": "integer",
+                                                        "example": 18
+                                                    },
+                                                    "address": {
+                                                        "type": "string",
+                                                        "example": "city Taganrog"
+                                                    },
+                                                    "balance": {
+                                                        "type": "integer",
+                                                        "example": 525
+                                                    },
+                                                    "gender": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "isAdmin": {
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    },
+                                                    "basket": {
+                                                        "properties": {
+                                                            "products": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "id": {
+                                                                            "type": "integer",
+                                                                            "example": 1
+                                                                        },
+                                                                        "flower": {
+                                                                            "properties": {
+                                                                                "id": {
+                                                                                    "type": "integer",
+                                                                                    "example": 1
+                                                                                },
+                                                                                "title": {
+                                                                                    "type": "string",
+                                                                                    "example": "Title"
+                                                                                },
+                                                                                "description": {
+                                                                                    "type": "string",
+                                                                                    "example": "Description"
+                                                                                },
+                                                                                "count": {
+                                                                                    "type": "integer",
+                                                                                    "example": 10
+                                                                                },
+                                                                                "price": {
+                                                                                    "type": "integer",
+                                                                                    "example": 199
+                                                                                },
+                                                                                "category": {
+                                                                                    "properties": {
+                                                                                        "id": {
+                                                                                            "type": "integer",
+                                                                                            "example": 1
+                                                                                        },
+                                                                                        "title": {
+                                                                                            "type": "string",
+                                                                                            "example": "Title category"
+                                                                                        }
+                                                                                    },
+                                                                                    "type": "object"
+                                                                                },
+                                                                                "tags": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "properties": {
+                                                                                            "id": {
+                                                                                                "type": "integer",
+                                                                                                "example": 1
+                                                                                            },
+                                                                                            "title": {
+                                                                                                "type": "string",
+                                                                                                "example": "Title tags"
+                                                                                            }
+                                                                                        },
+                                                                                        "type": "object"
+                                                                                    }
+                                                                                },
+                                                                                "images": {
+                                                                                    "type": "array",
+                                                                                    "items": {
+                                                                                        "properties": {
+                                                                                            "id": {
+                                                                                                "type": "integer",
+                                                                                                "example": 1
+                                                                                            },
+                                                                                            "title": {
+                                                                                                "type": "string",
+                                                                                                "example": "Title image"
+                                                                                            }
+                                                                                        },
+                                                                                        "type": "object"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            "type": "object"
+                                                                        },
+                                                                        "count": {
+                                                                            "type": "integer",
+                                                                            "example": 1
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            },
+                                                            "total_price": {
+                                                                "type": "integer",
+                                                                "example": 553
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users/{user}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Пользователь по ID",
+                "operationId": "e5b4450b636cbf07e95dd83bd288f3ff",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "ID пользователя",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Misha"
+                                                },
+                                                "surname": {
+                                                    "type": "string",
+                                                    "example": "Surname"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "email@mail.ru"
+                                                },
+                                                "age": {
+                                                    "type": "integer",
+                                                    "example": 18
+                                                },
+                                                "address": {
+                                                    "type": "string",
+                                                    "example": "city Taganrog"
+                                                },
+                                                "balance": {
+                                                    "type": "integer",
+                                                    "example": 525
+                                                },
+                                                "gender": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "isAdmin": {
+                                                    "type": "boolean",
+                                                    "example": true
+                                                },
+                                                "basket": {
+                                                    "properties": {
+                                                        "products": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "integer",
+                                                                        "example": 1
+                                                                    },
+                                                                    "flower": {
+                                                                        "properties": {
+                                                                            "id": {
+                                                                                "type": "integer",
+                                                                                "example": 1
+                                                                            },
+                                                                            "title": {
+                                                                                "type": "string",
+                                                                                "example": "Title"
+                                                                            },
+                                                                            "description": {
+                                                                                "type": "string",
+                                                                                "example": "Description"
+                                                                            },
+                                                                            "count": {
+                                                                                "type": "integer",
+                                                                                "example": 10
+                                                                            },
+                                                                            "price": {
+                                                                                "type": "integer",
+                                                                                "example": 199
+                                                                            },
+                                                                            "category": {
+                                                                                "properties": {
+                                                                                    "id": {
+                                                                                        "type": "integer",
+                                                                                        "example": 1
+                                                                                    },
+                                                                                    "title": {
+                                                                                        "type": "string",
+                                                                                        "example": "Title category"
+                                                                                    }
+                                                                                },
+                                                                                "type": "object"
+                                                                            },
+                                                                            "tags": {
+                                                                                "type": "array",
+                                                                                "items": {
+                                                                                    "properties": {
+                                                                                        "id": {
+                                                                                            "type": "integer",
+                                                                                            "example": 1
+                                                                                        },
+                                                                                        "title": {
+                                                                                            "type": "string",
+                                                                                            "example": "Title tags"
+                                                                                        }
+                                                                                    },
+                                                                                    "type": "object"
+                                                                                }
+                                                                            },
+                                                                            "images": {
+                                                                                "type": "array",
+                                                                                "items": {
+                                                                                    "properties": {
+                                                                                        "id": {
+                                                                                            "type": "integer",
+                                                                                            "example": 1
+                                                                                        },
+                                                                                        "title": {
+                                                                                            "type": "string",
+                                                                                            "example": "Title image"
+                                                                                        }
+                                                                                    },
+                                                                                    "type": "object"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "type": "object"
+                                                                    },
+                                                                    "count": {
+                                                                        "type": "integer",
+                                                                        "example": 1
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "total_price": {
+                                                            "type": "integer",
+                                                            "example": 553
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users/": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Создать",
+                "operationId": "8d9199cf5da05b157f50ba6116510070",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Name"
+                                            },
+                                            "surname": {
+                                                "type": "string",
+                                                "example": "Surname"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "email@mail.ru"
+                                            },
+                                            "password": {
+                                                "type": "string",
+                                                "example": "qwerty"
+                                            },
+                                            "age": {
+                                                "type": "integer",
+                                                "example": 53
+                                            },
+                                            "address": {
+                                                "type": "string",
+                                                "example": "address"
+                                            },
+                                            "gender": {
+                                                "type": "integer",
+                                                "example": 1
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 }
             }
